@@ -13,6 +13,6 @@ setuptools.setup(
     "Operating System :: OS Independent",
   ],
   package_dir={"": "."},
-  packages=["rust_enum"],
+  packages=["."],
   python_requires=">=3.6",
 )
