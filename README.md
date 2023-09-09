@@ -21,3 +21,9 @@ def test_enum_use_case():
         case DivisionResult.Some(n): assert n == 1
         case _: assert False
 ```
+
+## Installation
+
+```bash
+pip install rust_enum
+```
