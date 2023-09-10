@@ -4,7 +4,7 @@ import setuptools
 
 setuptools.setup(
   name="rust_enum",
-  version="1.0.1",
+  version="1.1.0",
   author="Nikita Girvel Dobrynin",
   author_email="widauka@ya.ru",
   description="Rust-style enums",
@@ -16,7 +16,7 @@ setuptools.setup(
   ],
   package_dir={"": "."},
   packages=["."],
-  python_requires=">=3.6",
+  python_requires=">=3.7",
   long_description=(Path(__file__).parent / "README.md").read_text(),
   long_description_content_type='text/markdown',
 )

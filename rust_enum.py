@@ -1,5 +1,6 @@
 """Rust-style enumerations."""
 from dataclasses import make_dataclass
+from typing import Any, TypeVar, Generic, Callable
 
 
 def enum(cls):
@@ -18,3 +19,38 @@ class Case:
     # to disable warnings
     def __call__(self, *args, **kwargs):
         pass
+
+
+class UnwrappingError(Exception): pass
+
+T = TypeVar("T")
+
+@enum
+class Option(Generic[T]):
+    Some = Case(value=T)
+    Nothing = Case()
+
+    def unwrap(self) -> T:
+        match self:
+            case Option.Some(value): return value
+            case _: raise UnwrappingError
+
+    D = TypeVar("D")
+
+    def unwrap_or(self, default_value: D) -> T | D:
+        match self:
+            case Option.Some(value): return value
+            case _: return default_value
+
+    R = TypeVar("R")
+    Self = TypeVar("Self", bound="Foo")
+
+    def map(self, mapping_function: Callable[[T], R]) -> "Option[R]":
+        match self:
+            case Option.Some(value): return Option.Some(mapping_function(value))
+            case _: return self
+
+    def and_then(self, mapping_function: Callable[[T], R]) -> "Option.Nothing | R":
+        match self:
+            case Option.Some(value): return mapping_function(value)
+            case _: return self
