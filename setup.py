@@ -4,7 +4,7 @@ import setuptools
 
 setuptools.setup(
   name="rust_enum",
-  version="1.1.1",
+  version="1.1.2",
   author="Nikita Girvel Dobrynin",
   author_email="widauka@ya.ru",
   description="Rust-style enums",

@@ -37,7 +37,7 @@ class Option(Generic[T]):
 
     D = TypeVar("D")
 
-    def unwrap_or(self, default_value: D) -> T | D:
+    def unwrap_or(self, default_value: D = None) -> T | D:
         match self:
             case Option.Some(value): return value
             case _: return default_value
