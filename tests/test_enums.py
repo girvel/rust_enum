@@ -1,4 +1,6 @@
-from rust_enum import enum, Case, Option
+import pytest
+
+from rust_enum import enum, Case, Option, UnwrappingError
 
 
 def test_enum_use_case():
@@ -26,3 +28,6 @@ def test_option_use_case():
     assert divide(6, 0).unwrap_or(None) is None
     assert divide(6, 2).map(lambda v: v * 3) == Option.Some(9)
     assert divide(6, 2).and_then(lambda v: divide(v, 3)) == Option.Some(1)
+
+    with pytest.raises(UnwrappingError):
+        Option.Nothing().unwrap()
