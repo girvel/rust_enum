@@ -57,4 +57,4 @@ class Option(Generic[T]):
 
     @classmethod
     def next(cls, generator: Generator) -> Self:
-        return next((cls.Some(e) for e in generator), cls.Nothing)
+        return next((cls.Some(e) for e in generator), cls.Nothing())
