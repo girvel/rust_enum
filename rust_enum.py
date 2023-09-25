@@ -1,7 +1,7 @@
 """Rust-style enumerations."""
 from collections.abc import Generator
 from dataclasses import make_dataclass
-from typing import Any, TypeVar, Generic, Callable, Self
+from typing import Any, TypeVar, Generic, Callable
 
 
 def enum(cls):
@@ -56,5 +56,5 @@ class Option(Generic[T]):
             case _: return self
 
     @classmethod
-    def next(cls, generator: Generator) -> Self:
+    def next(cls, generator: Generator) -> "Option[Any]":
         return next((cls.Some(e) for e in generator), cls.Nothing())
