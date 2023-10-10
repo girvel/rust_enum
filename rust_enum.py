@@ -55,6 +55,11 @@ class Option(Generic[T]):
             case Option.Some(value): return mapping_function(value)
             case _: return self
 
+    def some(self):
+        match self:
+            case Option.Some(_): return True
+            case _: return False
+
     @classmethod
     def next(cls, generator: Generator) -> "Option[Any]":
         return next((cls.Some(e) for e in generator), cls.Nothing())
